@@ -1,0 +1,21 @@
+{
+  "name": "socket-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch":"forever -w server.js",
+    "prestart":"npm install",
+    "start":"forever server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "forever": "^4.0.0",
+    "http-event-stream": "^0.2.0",
+    "koa": "^2.13.1",
+    "koa-router": "^10.0.0",
+    "uuid": "^8.3.2"
+  }
+}
