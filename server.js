@@ -46,6 +46,8 @@ app.use(async(ctx, next) => {
     }
 });
 
+app.use (async ctx => ctx.response.body = 'OK');
+
 router.post('/users', async(ctx,next) => {
     let user = ctx.request.body;
     for (let i=0; i<users.length; i++){
