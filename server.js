@@ -51,7 +51,7 @@ router.post('/users', async(ctx,next) => {
     let user = ctx.request.body;
     for (let i=0; i<users.length; i++){
         if (user === users[i]) {
-            ctx.response.body = 'Данный никнейм занят! Выберите другой.';
+            ctx.response.body = 'failed';
             return;    
         }
     }
