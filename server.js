@@ -63,7 +63,7 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 const port = process.env.PORT||7070;
-const server = http.createServer(app.callback()).listen(port);
+const server = http.createServer(app.callback());
 const wsServer = new WS.Server({server});
 
 wsServer.on('connection', (ws, req) => {
@@ -81,4 +81,4 @@ wsServer.on('connection', (ws, req) => {
     ws.send('welcome', errCallback);
 });
 
-//server.listen(port);
+server.listen(port);
