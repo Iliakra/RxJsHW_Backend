@@ -59,6 +59,8 @@ router.post('/users', async(ctx,next) => {
     ctx.response.body = 'OK';
 });
 
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 const port = process.env.PORT||7070;
 const server = http.createServer(app.callback()).listen(port);
