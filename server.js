@@ -51,7 +51,7 @@ router.post('/users', async(ctx,next) => {
     let user = ctx.request.body;
     for (let i=0; i<users.length; i++){
         if (user === users[i]) {
-            ctx.response.body = 'failed';
+            ctx.response.status = 404;
             return;    
         }
     }
