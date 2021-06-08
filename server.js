@@ -56,7 +56,7 @@ router.post('/users', async(ctx,next) => {
         }
     }
     users.push(user);
-    ctx.response.body = 'OK';
+    ctx.response.body = users;
 });
 
 app.use(router.routes());
