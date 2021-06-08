@@ -50,6 +50,7 @@ app.use(async(ctx, next) => {
 
 router.post('/users', async(ctx,next) => {
     let user = ctx.request.body;
+    console.log('user', user);
     for (let i=0; i<users.length; i++){
         if (user === users[i]) {
             ctx.response.body = 'Данный никнейм занят! Выберите другой.';
