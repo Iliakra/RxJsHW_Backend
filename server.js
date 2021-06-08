@@ -74,7 +74,7 @@ wsServer.on('connection', (ws, req) => {
     }
 
     ws.on('message', msg => {
-        console.log('msg');
+        console.log('msg', msg);
         ws.send('response', errCallback);
     });
 
