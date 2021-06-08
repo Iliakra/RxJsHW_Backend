@@ -5,6 +5,7 @@ const Router = require('koa-router');
 const uuid = require('uuid');
 const app= new Koa();
 const router = new Router();
+const WS = require('ws');
 
 let users = ["Ivan","Anna"];
 
@@ -46,17 +47,15 @@ app.use(async(ctx, next) => {
     }
 });
 
-//app.use (async ctx => ctx.response.body = 'OK');
-
 router.post('/users', async(ctx,next) => {
     let user = ctx.request.body;
-    console.log('user', user);
     for (let i=0; i<users.length; i++){
         if (user === users[i]) {
             ctx.response.body = 'Данный никнейм занят! Выберите другой.';
             return;    
         }
     }
+    users.push(user);
     ctx.response.body = 'OK';
 });
 
@@ -65,3 +64,21 @@ app.use(router.allowedMethods());
 
 const port = process.env.PORT||7070;
 const server = http.createServer(app.callback()).listen(port);
+const wsServer = new WS.Server({server});
+
+wsServer.on('connection', (ws, req) => {
+    let errCallback = (err) => {
+        if(err) {
+            console.log(err);
+        }
+    }
+
+    ws.on('message', msg => {
+        console.log('msg');
+        ws.send('response', errCallback);
+    });
+
+    ws.send('welcome', errCallback);
+});
+
+//server.listen(port);
