@@ -6,7 +6,13 @@ const uuid = require('uuid');
 const app= new Koa();
 const router = new Router();
 
-let users = [];
+let users = ["Ivan","Anna"];
+
+app.use(koaBody({
+    urlencoded:true,
+    multipart:true,
+    json:true,
+}));
 
 app.use(async(ctx, next) => { 
     const origin = ctx.request.get('Origin');
@@ -38,6 +44,17 @@ app.use(async(ctx, next) => {
         
         ctx.response.status = 204;
     }
+});
+
+router.post('/users', async(ctx,next) => {
+    let user = ctx.request.body;
+    for (let i=0; i<users.length; i++){
+        if (user === users[i]) {
+            ctx.response.body = 'Данный никнейм занят! Выберите другой.';
+            return;    
+        }
+    }
+    ctx.response.body = users;
 });
 
 
