@@ -78,10 +78,7 @@ wsServer.on('connection', (ws, req) => {
         //ws.send('response', errCallback);
         Array.from(wsServer.clients)
             .filter(o => o.readyState === WS.OPEN)
-            .forEach(o => {
-                o.send(msg);
-                o.send(users);
-            })
+            .forEach(o => o.send(msg));
     });
 
     ws.send('welcome', errCallback);
