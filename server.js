@@ -74,7 +74,7 @@ wsServer.on('connection', (ws, req) => {
     }
 
     ws.on('message', msg => {
-        //ws.send('response', errCallback);
+        console.log('msg',msg);
         Array.from(wsServer.clients)
             .filter(o => o.readyState === WS.OPEN)
             .forEach(o => o.send(msg));
