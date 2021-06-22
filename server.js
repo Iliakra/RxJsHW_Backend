@@ -82,7 +82,7 @@ wsServer.on('connection', (ws, req) => {
         /*Array.from(wsServer.clients)
             .filter(o => o.readyState === WS.OPEN)
             .forEach(o => o.send(msg));
-            */
+        */
         console.log('clients',clients);
         for(let client of clients) {
             client.send(msg);
