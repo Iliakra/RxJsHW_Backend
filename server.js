@@ -7,6 +7,8 @@ const app= new Koa();
 const router = new Router();
 const WS = require('ws');
 
+const clients = new Set();
+
 let users = ["Ivan","Anna"];
 
 app.use(koaBody({
@@ -73,11 +75,17 @@ wsServer.on('connection', (ws, req) => {
         }
     }
 
+    clients.add(ws);
+
     ws.on('message', msg => {
-        console.log('msg',msg);
-        Array.from(wsServer.clients)
+        //console.log('msg',msg);
+        /*Array.from(wsServer.clients)
             .filter(o => o.readyState === WS.OPEN)
             .forEach(o => o.send(msg));
+            */
+        for(let client of clients) {
+            client.send(msg);
+            }
     });
 });
 
