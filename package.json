@@ -9,6 +9,9 @@
     "prestart": "npm install",
     "start": "forever server.js"
   },
+  "engines": {
+    "node": "11.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
