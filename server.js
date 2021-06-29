@@ -6,7 +6,6 @@ const koaBody = require('koa-body');
 const Router = require('koa-router');
 const app = new Koa();
 const router = new Router();
-const WS = require('ws');
 
 const chat = new ChatServer();
 
