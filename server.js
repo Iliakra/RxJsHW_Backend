@@ -8,26 +8,16 @@ const app = new Koa();
 const router = new Router();
 const WS = require('ws');
 
-<<<<<<< HEAD
 const chat = new ChatServer();
 
 // Koa body initialize
 app.use(
     koaBody({
       urlencoded: true,
+      multipart: true,
+      json: true,
     })
   );
-=======
-//const clients = new Set();
-
-let users = ["Ivan","Anna"];
-
-app.use(koaBody({
-    urlencoded:true,
-    multipart:true,
-    json:true,
-}));
->>>>>>> eae716506e5b2f9df9b15b873ee8c9d5c0a8d7b1
 
 app.use(async(ctx, next) => { 
     const origin = ctx.request.get('Origin');
@@ -61,28 +51,14 @@ app.use(async(ctx, next) => {
     }
 });
 
-<<<<<<< HEAD
 router.get('/users', async (ctx) => {
     ctx.response.type = 200;
     ctx.response.body = chat.getConnectedUsers(); 
-=======
-router.post('/users', async(ctx,next) => {
-    let user = ctx.request.body;
-    for (let i=0; i<users.length; i++){
-        if (user === users[i]) {
-            ctx.response.status = 404;
-            return;    
-        }
-    }
-    users.push(user);
-    ctx.response.body = users;
->>>>>>> eae716506e5b2f9df9b15b873ee8c9d5c0a8d7b1
 });
 
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-<<<<<<< HEAD
 
 const port = process.env.PORT||7070;
 const server = http.createServer(app.callback());
@@ -148,24 +124,3 @@ server.listen(port);
 console.log(`Server is listening on port ${port}`);
 
   
-=======
-const port = process.env.PORT || 7070;
-const server = http.createServer(app.callback());
-const wsServer = new WS.Server({server});
-
-wsServer.on('connection', (ws, req) => {
-    let errCallback = (err) => {
-        if(err) {
-            console.log(err);
-        }
-    }
-
-    ws.on('message', msg => {
-        Array.from(wsServer.clients)
-            .filter(o => o.readyState === WS.OPEN)
-            .forEach(o => o.send(msg));
-    });
-});
-
-server.listen(port);
->>>>>>> eae716506e5b2f9df9b15b873ee8c9d5c0a8d7b1
