@@ -15,12 +15,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "faker": "^5.5.3",
     "forever": "^4.0.0",
     "http-event-stream": "^0.2.0",
     "koa": "^2.13.1",
     "koa-body": "^4.2.0",
     "koa-router": "^10.0.0",
-    "uuid": "^8.3.2",
-    "ws": "^7.4.5"
+    "uuid": "^8.3.2"
   }
 }
